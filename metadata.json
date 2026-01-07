@@ -1,0 +1,5 @@
+{
+  "name": "Elevator Formula Calculator",
+  "description": "A specialized calculator for elevator technicians to verify magnetic pole angles and current limit parameters.",
+  "requestFramePermissions": []
+}
