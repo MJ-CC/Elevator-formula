@@ -45,7 +45,7 @@ export const SpeedCurveCalculator: React.FC = () => {
         {/* Inputs */}
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">額定速度 (米數)</label>
+            <label className="block text-sm font-medium text-slate-700 mb-2">米數 (m/min)</label>
             <div className="flex bg-slate-100 p-1 rounded-lg">
               {(['30', '45', '60'] as SpeedType[]).map((s) => (
                 <button
@@ -64,13 +64,13 @@ export const SpeedCurveCalculator: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">運轉頻率 (Hz)</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1">頻率 (Hz)</label>
             <div className="relative">
               <input
                 type="number"
                 value={frequency}
                 onChange={(e) => setFrequency(e.target.value)}
-                placeholder=""
+                placeholder={(!frequency || !poles) ? "" : "自動計算"}
                 className="block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 border bg-slate-50"
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">

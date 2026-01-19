@@ -145,19 +145,19 @@ export const TractionMachineCalculator: React.FC = () => {
     <Card 
       title="主機速度參數計算" 
       icon={<Settings className="w-6 h-6" />}
-      description="填寫任意 4 個參數，自動計算第 5 個參數 (米數/RPM/輪徑/減速比/吊掛比)"
+      description="輸入任4項數值即可計算"
     >
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           {/* Speed */}
           <div className="col-span-1">
-            <label className="block text-xs font-medium text-slate-500 mb-1">速度 (米數)</label>
+            <label className="block text-xs font-medium text-slate-500 mb-1">米數 (m/min)</label>
             <div className="relative">
               <input
                 type="number"
                 value={speed}
                 onChange={(e) => setSpeed(e.target.value)}
-                placeholder="m/min"
+                placeholder={(!frequency || !poles) ? "" : "自動計算"}
                 className={`block w-full rounded-md shadow-sm text-sm p-3 border focus:ring-blue-500 focus:border-blue-500 transition-colors ${getFieldStatus(speed)}`}
               />
             </div>
@@ -171,7 +171,7 @@ export const TractionMachineCalculator: React.FC = () => {
                 type="number"
                 value={rpm}
                 onChange={(e) => setRpm(e.target.value)}
-                placeholder="RPM"
+                placeholder={(!frequency || !poles) ? "" : "自動計算"}
                 className={`block w-full rounded-md shadow-sm text-sm p-3 border focus:ring-blue-500 focus:border-blue-500 transition-colors ${getFieldStatus(rpm)}`}
               />
             </div>
@@ -179,13 +179,13 @@ export const TractionMachineCalculator: React.FC = () => {
 
           {/* Diameter */}
           <div className="col-span-1">
-            <label className="block text-xs font-medium text-slate-500 mb-1">主機輪徑</label>
+            <label className="block text-xs font-medium text-slate-500 mb-1">主機輪徑(mm)</label>
             <div className="relative">
               <input
                 type="number"
                 value={diameter}
                 onChange={(e) => setDiameter(e.target.value)}
-                placeholder="mm"
+                placeholder={(!frequency || !poles) ? "" : "自動計算"}
                 className={`block w-full rounded-md shadow-sm text-sm p-3 border focus:ring-blue-500 focus:border-blue-500 transition-colors ${getFieldStatus(diameter)}`}
               />
             </div>
@@ -199,7 +199,7 @@ export const TractionMachineCalculator: React.FC = () => {
                 type="text"
                 value={gearRatio}
                 onChange={(e) => setGearRatio(e.target.value)}
-                placeholder="如 43:2 或 21.5"
+                placeholder={(!frequency || !poles) ? "例如 43:2 或 21.5" : "自動計算"}
                 className={`block w-full rounded-md shadow-sm text-sm p-3 border focus:ring-blue-500 focus:border-blue-500 transition-colors ${getFieldStatus(gearRatio)}`}
               />
             </div>
@@ -213,7 +213,7 @@ export const TractionMachineCalculator: React.FC = () => {
                 type="text"
                 value={roping}
                 onChange={(e) => setRoping(e.target.value)}
-                placeholder="如 2:1 或 2"
+                placeholder={(!frequency || !poles) ? "例如 2:1 或 2" : "自動計算"}
                 className={`block w-full rounded-md shadow-sm text-sm p-3 border focus:ring-blue-500 focus:border-blue-500 transition-colors ${getFieldStatus(roping)}`}
               />
             </div>

@@ -26,11 +26,11 @@ export const MagneticPoleCalculator: React.FC = () => {
     // If val <= 90: 360 - (90 - val)
     if (val > 90) {
       calculatedValue = val - 90;
-      formulaStr = '輸入角度 - 90 = 輸出值';
+      formulaStr = '輸入角度 - 90 = 需調整的角度';
       stepsStr = `${val} - 90`;
     } else {
       calculatedValue = 360 - (90 - val);
-      formulaStr = '360 - (90 - 輸入角度) = 輸出值';
+      formulaStr = '360 - (90 - 輸入角度) = 需調整的角度';
       stepsStr = `360 - (90 - ${val})`;
     }
 
@@ -56,7 +56,7 @@ export const MagneticPoleCalculator: React.FC = () => {
       <div className="space-y-4">
         <div>
           <label htmlFor="angleInput" className="block text-sm font-medium text-slate-700 mb-1">
-            輸入角度值
+            輸入角度值 (08-09)
           </label>
           <div className="relative">
             <input
@@ -64,7 +64,7 @@ export const MagneticPoleCalculator: React.FC = () => {
               id="angleInput"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="例如: 100"
+              placeholder=""
               className="block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 border bg-slate-50 font-mono"
             />
           </div>

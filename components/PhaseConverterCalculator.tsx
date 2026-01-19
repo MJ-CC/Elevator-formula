@@ -70,7 +70,7 @@ export const PhaseConverterCalculator: React.FC = () => {
               type="number"
               value={powerKw}
               onChange={(e) => setPowerKw(e.target.value)}
-              placeholder={converterSpec ? "自動計算" : "輸入..."}
+              placeholder={converterSpec ? "自動計算" : ""}
               className={`block w-full rounded-md shadow-sm text-sm p-3 border focus:ring-blue-500 focus:border-blue-500 transition-colors ${getFieldStatus(powerKw, converterSpec)}`}
             />
           </div>
@@ -80,7 +80,7 @@ export const PhaseConverterCalculator: React.FC = () => {
               type="number"
               value={converterSpec}
               onChange={(e) => setConverterSpec(e.target.value)}
-              placeholder={powerKw ? "自動計算" : "輸入..."}
+              placeholder={powerKw ? "自動計算" : ""}
               className={`block w-full rounded-md shadow-sm text-sm p-3 border focus:ring-blue-500 focus:border-blue-500 transition-colors ${getFieldStatus(converterSpec, powerKw)}`}
             />
           </div>

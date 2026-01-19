@@ -81,7 +81,7 @@ export const RpmCalculator: React.FC = () => {
     <Card 
       title="馬達轉速計算 (RPM)" 
       icon={<Gauge className="w-6 h-6" />}
-      description="輸入任兩項數值以計算第三項 (頻率/極數/轉速)"
+      description="輸入任2項數值即可計算)"
     >
       <div className="space-y-4">
         <div className="grid grid-cols-1 gap-4">
@@ -95,7 +95,7 @@ export const RpmCalculator: React.FC = () => {
               id="rpmInput"
               value={rpm}
               onChange={(e) => setRpm(e.target.value)}
-              placeholder={(!frequency || !poles) ? "輸入轉速..." : "已由公式計算"}
+              placeholder={(!frequency || !poles) ? "" : "自動計算"}
               className={`block w-full rounded-md shadow-sm sm:text-sm p-3 border ${
                  (!rpm && frequency && poles) ? 'bg-slate-100 border-slate-200 cursor-not-allowed' : 'bg-slate-50 border-slate-300 focus:border-blue-500 focus:ring-blue-500'
               }`}
@@ -113,7 +113,7 @@ export const RpmCalculator: React.FC = () => {
                 id="freqInput"
                 value={frequency}
                 onChange={(e) => setFrequency(e.target.value)}
-                placeholder="例如: 60"
+                placeholder={(!frequency || !poles) ? "" : "自動計算"}
                 className={`block w-full rounded-md shadow-sm sm:text-sm p-3 border ${
                   (!frequency && rpm && poles) ? 'bg-slate-100 border-slate-200 cursor-not-allowed' : 'bg-slate-50 border-slate-300 focus:border-blue-500 focus:ring-blue-500'
                }`}
@@ -130,7 +130,7 @@ export const RpmCalculator: React.FC = () => {
                 id="polesInput"
                 value={poles}
                 onChange={(e) => setPoles(e.target.value)}
-                placeholder="例如: 4"
+                placeholder={(!frequency || !poles) ? "" : "自動計算"}
                 className={`block w-full rounded-md shadow-sm sm:text-sm p-3 border ${
                   (!poles && rpm && frequency) ? 'bg-slate-100 border-slate-200 cursor-not-allowed' : 'bg-slate-50 border-slate-300 focus:border-blue-500 focus:ring-blue-500'
                }`}
