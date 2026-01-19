@@ -13,7 +13,7 @@ interface ParamRow {
 
 const PARAM_DATA: ParamRow[] = [
   { code: '04-01', name: '啟動緩速、再平層速度', divisors: { '30': 0, '45': 0, '60': 0 } },
-  { code: '04-02', name: '爬速', divisors: { '30': 15, '45': 22.5, '60': 30 } },
+  { code: '04-02', name: '尾速', divisors: { '30': 15, '45': 22.5, '60': 30 } },
   { code: '04-03', name: 'UPS速', divisors: { '30': 6, '45': 9, '60': 12 } },
   { code: '04-04', name: '低速、手動速', divisors: { '30': 2, '45': 3, '60': 4 } },
   { code: '04-05', name: '讀樓速', divisors: { '30': 2, '45': 3, '60': 4 } },
@@ -37,7 +37,7 @@ export const SpeedCurveCalculator: React.FC = () => {
 
   return (
     <Card 
-      title="速度曲線參數 (04-XX)" 
+      title="長、短階速度 (04-XX)" 
       icon={<Activity className="w-6 h-6" />}
       description="根據額定速度與頻率，計算 04 群組參數設定值"
     >
@@ -70,7 +70,7 @@ export const SpeedCurveCalculator: React.FC = () => {
                 type="number"
                 value={frequency}
                 onChange={(e) => setFrequency(e.target.value)}
-                placeholder="例如: 12"
+                placeholder=""
                 className="block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3 border bg-slate-50"
               />
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
