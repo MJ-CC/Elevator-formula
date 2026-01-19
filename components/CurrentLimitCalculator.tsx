@@ -87,7 +87,7 @@ export const CurrentLimitCalculator: React.FC = () => {
     <Card 
       title="電流限制 (06-11)" 
       icon={<Zap className="w-6 h-6" />}
-      description="輸入任兩項數值以計算第三項"
+      description="輸入任2項數值即可計算"
     >
       <div className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -100,7 +100,7 @@ export const CurrentLimitCalculator: React.FC = () => {
               id="motorCurrent"
               value={motorCurrent}
               onChange={(e) => setMotorCurrent(e.target.value)}
-              placeholder="例如: 17"
+              placeholder=""
               className={`block w-full rounded-md shadow-sm sm:text-sm p-3 border ${getFieldStatus(motorCurrent)}`}
             />
           </div>
@@ -114,7 +114,7 @@ export const CurrentLimitCalculator: React.FC = () => {
               id="inverterCurrent"
               value={inverterCurrent}
               onChange={(e) => setInverterCurrent(e.target.value)}
-              placeholder="例如: 13"
+              placeholder=""
               className={`block w-full rounded-md shadow-sm sm:text-sm p-3 border ${getFieldStatus(inverterCurrent)}`}
             />
           </div>
@@ -128,7 +128,7 @@ export const CurrentLimitCalculator: React.FC = () => {
               id="currentLimit"
               value={currentLimit}
               onChange={(e) => setCurrentLimit(e.target.value)}
-              placeholder="例如: 261"
+              placeholder=""
               className={`block w-full rounded-md shadow-sm sm:text-sm p-3 border ${getFieldStatus(currentLimit)}`}
             />
           </div>

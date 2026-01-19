@@ -134,7 +134,7 @@ export const DividerCalculator: React.FC = () => {
     <Card 
       title="除頻數計算" 
       icon={<Hash className="w-6 h-6" />}
-      description="米數、RPM、編碼器任填3格即可推算空白欄"
+      description="輸入任3項數值即可計算"
     >
       <div className="space-y-4">
         {/* Delta VL Checkbox */}
@@ -147,7 +147,7 @@ export const DividerCalculator: React.FC = () => {
             className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
           />
           <label htmlFor="deltaVL" className="text-sm font-semibold text-blue-900 cursor-pointer flex items-center gap-1">
-            台達 VL 變頻器 (結果 ÷ 10)
+            使用台達 VL 變頻器
           </label>
         </div>
 
@@ -158,7 +158,7 @@ export const DividerCalculator: React.FC = () => {
               type="text"
               value={divider}
               onChange={(e) => setDivider(e.target.value.toUpperCase())}
-              placeholder={(!meters || !rpm || !encoder) ? "待計算" : "輸入 Hex..."}
+              placeholder={(!meters || !rpm || !encoder) ? ""}
               className={`block w-full rounded-md shadow-sm text-sm p-3 border font-mono ${
                 (!divider && meters && rpm && encoder) 
                   ? 'bg-blue-50 border-blue-200 placeholder-blue-300' 
@@ -167,12 +167,12 @@ export const DividerCalculator: React.FC = () => {
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-500 mb-1">米數 (M)</label>
+            <label className="block text-xs font-medium text-slate-500 mb-1">米數 (m/min)</label>
             <input
               type="number"
               value={meters}
               onChange={(e) => setMeters(e.target.value)}
-              placeholder="例如: 30"
+              placeholder=""
               className={`block w-full rounded-md shadow-sm text-sm p-3 border ${
                 (!meters && divider && rpm && encoder) 
                   ? 'bg-blue-50 border-blue-200 placeholder-blue-300' 
@@ -186,12 +186,12 @@ export const DividerCalculator: React.FC = () => {
             )}
           </div>
           <div>
-            <label className="block text-xs font-medium text-slate-500 mb-1">同步轉速 (RPM)</label>
+            <label className="block text-xs font-medium text-slate-500 mb-1">轉速 (RPM)</label>
             <input
               type="number"
               value={rpm}
               onChange={(e) => setRpm(e.target.value)}
-              placeholder="輸入轉速..."
+              placeholder=""
               className={`block w-full rounded-md shadow-sm text-sm p-3 border ${
                 (!rpm && divider && meters && encoder) 
                   ? 'bg-blue-50 border-blue-200 placeholder-blue-300' 

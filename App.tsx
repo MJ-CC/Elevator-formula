@@ -72,7 +72,7 @@ const App: React.FC = () => {
       category: 'motor',
       icon: <Compass className="w-5 h-5" />,
       component: <MagneticPoleCalculator />,
-      keywords: ['磁極', '角度', 'angle', 'pole', '08-09', 'motor', 'hex']
+      keywords: ['磁極', '角度', 'angle', 'pole', '08-09', 'motor']
     },
     {
       id: 'speed_curve',
@@ -80,7 +80,7 @@ const App: React.FC = () => {
       category: 'speed',
       icon: <Activity className="w-5 h-5" />,
       component: <SpeedCurveCalculator />,
-      keywords: ['curve', 'speed', '04-01', '04-02', '爬速', '中速', '頻率', 'hz']
+      keywords: ['curve', 'speed', '04-01', '04-02', '04-03', '04-04', '04-05', '04-06', '04-07', '尾速', '中速', '頻率', 'hz', '全速', '長短階']
     },
     {
       id: 'current',
