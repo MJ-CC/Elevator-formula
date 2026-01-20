@@ -68,41 +68,41 @@ export const MachineSpeedCalc: React.FC<CalculatorProps> = (props) => {
     let val = '';
     let steps: string[] = [];
 
-    // Formula requested: (RPM * 3.14 * (Dia/1000) * Ratio) / Roping
+    // Correct Formula: Speed = (RPM * PI * Dia/1000) / (Ratio * Roping)
     try {
       if (mode === 'SPEED') {
         if (vRpm && vDia && vRatio && vRoping) {
-          const res = (vRpm * PI * (vDia / 1000) * vRatio) / vRoping;
+          const res = (vRpm * PI * (vDia / 1000)) / (vRatio * vRoping);
           val = res.toFixed(2);
-          steps = [`(${vRpm} × 3.14 × (${vDia}÷1000) × ${vRatio.toFixed(2)}) ÷ ${vRoping} = ${val}`];
+          steps = [`(${vRpm} × 3.14 × (${vDia}÷1000)) ÷ (${vRatio.toFixed(2)} × ${vRoping}) = ${val}`];
         }
       } else if (mode === 'RPM') {
         if (vSpeed && vDia && vRatio && vRoping) {
-          // RPM = (Speed * Roping) / (3.14 * (Dia/1000) * Ratio)
-          const res = (vSpeed * vRoping) / (PI * (vDia / 1000) * vRatio);
+          // RPM = (Speed * Ratio * Roping) / (PI * Dia/1000)
+          const res = (vSpeed * vRatio * vRoping) / (PI * (vDia / 1000));
           val = res.toFixed(1);
-          steps = [`(${vSpeed} × ${vRoping}) ÷ (3.14 × (${vDia}÷1000) × ${vRatio.toFixed(2)}) = ${val}`];
+          steps = [`(${vSpeed} × ${vRatio.toFixed(2)} × ${vRoping}) ÷ (3.14 × (${vDia}÷1000)) = ${val}`];
         }
       } else if (mode === 'DIA') {
         if (vSpeed && vRpm && vRatio && vRoping) {
-          // Dia = (Speed * Roping * 1000) / (RPM * 3.14 * Ratio)
-          const res = (vSpeed * vRoping * 1000) / (vRpm * PI * vRatio);
+          // Dia = (Speed * Ratio * Roping * 1000) / (RPM * PI)
+          const res = (vSpeed * vRatio * vRoping * 1000) / (vRpm * PI);
           val = res.toFixed(1);
-          steps = [`(${vSpeed} × ${vRoping} × 1000) ÷ (${vRpm} × 3.14 × ${vRatio.toFixed(2)}) = ${val}`];
+          steps = [`(${vSpeed} × ${vRatio.toFixed(2)} × ${vRoping} × 1000) ÷ (${vRpm} × 3.14) = ${val}`];
         }
       } else if (mode === 'RATIO') {
         if (vSpeed && vRpm && vDia && vRoping) {
-          // Ratio = (Speed * Roping) / (RPM * 3.14 * (Dia/1000))
-          const res = (vSpeed * vRoping) / (vRpm * PI * (vDia / 1000));
+          // Ratio = (RPM * PI * Dia/1000) / (Speed * Roping)
+          const res = (vRpm * PI * (vDia / 1000)) / (vSpeed * vRoping);
           val = res.toFixed(2);
-          steps = [`(${vSpeed} × ${vRoping}) ÷ (${vRpm} × 3.14 × (${vDia}÷1000)) = ${val}`];
+          steps = [`(${vRpm} × 3.14 × (${vDia}÷1000)) ÷ (${vSpeed} × ${vRoping}) = ${val}`];
         }
       } else if (mode === 'ROPING') {
-         // Roping = (RPM * 3.14 * (Dia/1000) * Ratio) / Speed
+         // Roping = (RPM * PI * Dia/1000) / (Speed * Ratio)
          if (vSpeed && vRpm && vDia && vRatio) {
-            const res = (vRpm * PI * (vDia / 1000) * vRatio) / vSpeed;
+            const res = (vRpm * PI * (vDia / 1000)) / (vSpeed * vRatio);
             val = res.toFixed(2);
-            steps = [`(${vRpm} × 3.14 × (${vDia}÷1000) × ${vRatio.toFixed(2)}) ÷ ${vSpeed} = ${val}`];
+            steps = [`(${vRpm} × 3.14 × (${vDia}÷1000)) ÷ (${vSpeed} × ${vRatio.toFixed(2)}) = ${val}`];
          }
       }
     } catch (e) {
@@ -176,7 +176,7 @@ export const MachineSpeedCalc: React.FC<CalculatorProps> = (props) => {
             value={mode === 'RATIO' ? calcResult.val : ratio} 
             onChange={setRatio} 
             isTarget={mode === 'RATIO'} 
-            placeholder="例如：43：2" 
+            placeholder="例如：43:2" 
           />
           <div className="col-span-2 sm:col-span-1">
              {mode === 'ROPING' ? (
