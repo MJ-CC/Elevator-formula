@@ -1,50 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useExpandContext } from './ExpandContext';
 
 interface CardProps {
   title: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-  description?: string;
+  icon: ReactNode;
+  isOpen: boolean;
+  onToggle: () => void;
+  children: ReactNode;
+  categoryTag?: string;
+  highlight?: boolean;
 }
 
-export const Card: React.FC<CardProps> = ({ title, icon, children, description }) => {
-  const { trigger, shouldExpand } = useExpandContext();
-  const [isOpen, setIsOpen] = useState(true);
-
-  // Sync with global expand/collapse trigger
-  useEffect(() => {
-    if (trigger > 0) {
-      setIsOpen(shouldExpand);
-    }
-  }, [trigger, shouldExpand]);
-
+export const Card: React.FC<CardProps> = ({ 
+  title, 
+  icon, 
+  isOpen, 
+  onToggle, 
+  children,
+  categoryTag,
+  highlight 
+}) => {
   return (
-    <div className="bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden transition-all duration-300 hover:shadow-xl">
-      <div 
-        className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center justify-between cursor-pointer select-none hover:bg-slate-100/50 transition-colors"
-        onClick={() => setIsOpen(!isOpen)}
+    <div className={`bg-white rounded-xl shadow-lg transition-all duration-300 border ${highlight ? 'border-blue-400 ring-2 ring-blue-100' : 'border-slate-100'}`}>
+      <button 
+        onClick={onToggle}
+        className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none"
       >
         <div className="flex items-center gap-3">
-          <div className="text-blue-600">
+          <div className="text-blue-600 p-2 bg-blue-50 rounded-lg">
             {icon}
           </div>
           <div>
-            <h2 className="text-lg font-bold text-slate-800">{title}</h2>
-            {description && <p className="text-xs text-slate-500 mt-0.5">{description}</p>}
+            <h3 className="font-bold text-lg text-slate-800">{title}</h3>
+            {categoryTag && (
+              <span className="text-xs font-medium text-slate-400 px-1.5 py-0.5 bg-slate-100 rounded">
+                {categoryTag}
+              </span>
+            )}
           </div>
         </div>
-        <button 
-          className="text-slate-400 hover:text-blue-600 transition-colors p-1 rounded-full hover:bg-blue-50"
-          aria-label={isOpen ? "摺疊" : "展開"}
-        >
-          {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-        </button>
-      </div>
+        <div className="text-slate-400 hover:text-blue-600 transition-colors">
+          {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+        </div>
+      </button>
       
       {isOpen && (
-        <div className="p-6 animate-fade-in">
+        <div className="px-6 pb-6 pt-0 animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="h-px bg-slate-100 mb-4 w-full" />
           {children}
         </div>
       )}
