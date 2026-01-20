@@ -49,13 +49,16 @@ export const MachineSpeedCalc: React.FC<CalculatorProps> = (props) => {
 
   const [calcResult, setCalcResult] = useState<{ val: string, steps: string[] }>({ val: '', steps: [] });
 
-  // Helper to parse ratio like "43:2" -> 21.5
+  // Helper to parse ratio like "43:2" or "43：2" -> 21.5
   const parseRatio = (str: string): number => {
-    if (str.includes(':')) {
-      const [n, d] = str.split(':').map(Number);
+    // Normalize Chinese colon to standard colon
+    const normalized = str.replace(/：/g, ':');
+    
+    if (normalized.includes(':')) {
+      const [n, d] = normalized.split(':').map(Number);
       return d !== 0 ? n / d : 0;
     }
-    return parseFloat(str) || 0;
+    return parseFloat(normalized) || 0;
   };
 
   useEffect(() => {
