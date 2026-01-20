@@ -8,6 +8,7 @@ import { MachineSpeedCalc } from './components/calculators/MachineSpeedCalc';
 import { FreqDivCalc } from './components/calculators/FreqDivCalc';
 import { MotorRpmCalc } from './components/calculators/MotorRpmCalc';
 import { PhaseConvCalc } from './components/calculators/PhaseConvCalc';
+import { OhmsLawCalc } from './components/calculators/OhmsLawCalc';
 
 const CATEGORIES: { id: CalculatorCategory; label: string }[] = [
   { id: 'ALL', label: '全部' },
@@ -61,7 +62,7 @@ function App() {
 
   const toggleAll = (expand: boolean) => {
     const newState: Record<string, boolean> = {};
-    const ids = ['speed', 'pole', 'current', 'machine', 'freq', 'rpm', 'phase'];
+    const ids = ['speed', 'pole', 'current', 'machine', 'freq', 'rpm', 'phase', 'ohm'];
     ids.forEach(id => newState[id] = expand);
     setOpenStates(newState);
   };
@@ -156,6 +157,14 @@ function App() {
           <CurrentLimitCalc 
             isOpen={openStates['current'] || !!searchTerm} 
             onToggle={() => toggleCalc('current')}
+            highlight={!!searchTerm}
+          />
+        )}
+        
+        {shouldShow(['MOTOR', 'INVERTER'], '歐姆定律 Ohm Law 電壓 V 電流 A 電阻 R 瓦數 W Power') && (
+          <OhmsLawCalc 
+            isOpen={openStates['ohm'] || !!searchTerm} 
+            onToggle={() => toggleCalc('ohm')} 
             highlight={!!searchTerm}
           />
         )}
